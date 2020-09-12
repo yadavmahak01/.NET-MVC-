@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace KatanaIntro
 {
-    //using in HellpWorldComponent constructor
+    //using in HellpWorldComponent constructor working as an alias
 
     using AppFunc = Func<IDictionary<string, object>, Task>;
     class Program
@@ -30,6 +30,7 @@ namespace KatanaIntro
             }
         }
     }
+    // class program not needed for IIS as it will run from cmd
     public class Startup
     {
         
@@ -41,10 +42,22 @@ namespace KatanaIntro
                 return ctx.Response.WriteAsync("Hello World!!");
                 //For every request it will return Hello World
             });*/
-            
-            //middleware
 
-            
+
+            //middleware
+            //will dump out everthing in the environment
+            app.Use(async (environment, next) =>
+            {
+                foreach (var pair in environment.Environment)
+                {
+
+                    Console.WriteLine("{0}:{1}" ,pair.Key,pair.Value);
+                }
+                await next();
+                //after next everything comes back to pipeline in response
+            });
+
+            //will dump out the path requested by the status code
             app.Use(async (environment, next) =>
             {
 
@@ -57,6 +70,8 @@ namespace KatanaIntro
             });
 
             ConfigureWebApi(app);
+            /*the order will be based on writing, if helloworld component is stored before it will not
+             * pass the command to print the status as await command in not there in helloworld component*/
 
             app.Use<HelloWorldComponent>();
         }
