@@ -9,7 +9,7 @@ namespace EntityFrameworkCodeFirst.Controllers
 {
     public class BlogController : Controller
     {
-        BlogContext db = new BlogContext();
+        BlogContext db = new BlogContext(); 
         // GET: Blog
         public ActionResult Index()
         {
