@@ -1,0 +1,13 @@
+LOGIN FORM - A basic Login Form using Session and LogOut functionality using Entity Framework.
+
+Few Steps in building the Login Form-
+
+1.Using DataBase First approach creating user database
+2.Adding 2 usernames and their respective passwords
+3.Creating Home Controller and Login Controller
+4.Adding HttpPost Index method, Logout method and Reset method in Login Controller
+5.Adding Index method in Home Controller
+6.Creating View for both Index methods 
+7.Designing the form in the View and calling ViewBag in the View
+8.Configuring WebConfig for extending the session time
+
