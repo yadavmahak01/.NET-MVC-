@@ -30,6 +30,8 @@ namespace EFCodeFirst.Controllers
             {
                 ViewBag.InsertMessage = "<script> alert('Data Inserted')</script>";
                 ModelState.Clear();
+                //TempData["Message"]="Inserted";
+                return redirectToAction("Index");
             }
             else
             {
